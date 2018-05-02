@@ -1,13 +1,11 @@
 package de.htw.ai.kbe.runMeRunner;
 
-/**
- * Hello world!
- *
- */
+import de.htw.ai.kbe.de.PropsFileUtil.*;
+
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws Exception
     {
-        System.out.println( "Hello World!" );
+        System.out.println(PropsFileUtil.readPropsFile("app.properties"));
     }
 }
