@@ -1,0 +1,5 @@
+4
+
+public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.eins()public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.zwei()public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.vier()
+
+public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.drei()

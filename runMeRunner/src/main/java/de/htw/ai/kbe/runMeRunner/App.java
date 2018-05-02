@@ -1,11 +1,18 @@
 package de.htw.ai.kbe.runMeRunner;
 
-import de.htw.ai.kbe.de.PropsFileUtil.*;
+import org.apache.commons.cli.*;
 
 public class App 
 {
     public static void main( String[] args ) throws Exception
     {
-        System.out.println(PropsFileUtil.readPropsFile("app.properties"));
+    		CommandLineParser parser = new DefaultParser();
+    		
+    		RunMeRunner runMe = new RunMeRunner();
+    		runMe.loadMethods();
+    		runMe.writeMethods();
+    		System.out.println(runMe.getMethodCount());
+    		System.out.println(runMe.getMethodNamesNotInvoke());
+    		System.out.println(runMe.getMethodNamesWithRunMe());
     }
 }
