@@ -17,15 +17,16 @@ public class RunMeRunner {
 	List<String> methodNamesNotInvoke = new ArrayList<String>();
 	
 
-	public void loadMethods() throws Exception{
+	public void loadMethods(String propName) throws Exception{
 		//System.out.println(PropsFileUtil.readPropsFile("app.properties").getProperty("classToLoad"));
-		String className = PropsFileUtil.readPropsFile("app.properties").getProperty("classToLoad");
+		String className = PropsFileUtil.readPropsFile(propName).getProperty("classToLoad"); ///"app.properties"
 		Class<?> classToLoad = Class.forName(className);
 		Method [] methodsToLoad = classToLoad.getDeclaredMethods();
-		for (Method m : methodsToLoad) {
+
+		/**for (Method m : methodsToLoad) {
 			
 			//System.out.println("method name:  " + m.getName());
-		}
+		}**/
 		
 		
 		Method [] me = classToLoad.newInstance().getClass().getDeclaredMethods();
@@ -44,9 +45,9 @@ public class RunMeRunner {
 	
 	
 	
-	public void writeMethods () throws IOException {
+	public void writeMethods (String file) throws IOException {
 		
-		FileWriter fw = new FileWriter("runMeReport.txt");
+		FileWriter fw = new FileWriter(file);
 	    BufferedWriter bw = new BufferedWriter(fw);
 
 	    bw.write(String.valueOf(this.methodCount));
