@@ -17,7 +17,7 @@ public class RunMeRunner {
 	List<String> methodNamesNotInvoke = new ArrayList<String>();
 	
 
-	public void loadMethods(String propName) throws Exception{
+	public void loadMethods(String propName) throws FileNotFoundException, Exception{
 		//System.out.println(PropsFileUtil.readPropsFile("app.properties").getProperty("classToLoad"));
 		String className = PropsFileUtil.readPropsFile(propName).getProperty("classToLoad"); ///"app.properties"
 		Class<?> classToLoad = Class.forName(className);
@@ -30,16 +30,23 @@ public class RunMeRunner {
 		
 		
 		Method [] me = classToLoad.newInstance().getClass().getDeclaredMethods();
-		for (Method m : me) {
+		for (Method m : me) 
+		{
 			this.methodCount += 1;
-			if (m.isAnnotationPresent(RunMe.class)) {
+			if (m.isAnnotationPresent(RunMe.class)) 
+			{
 				this.methodNamesWithRunMe.add(m.toString());
-				m.invoke(classToLoad.newInstance());
+				//m.invoke(classToLoad.newInstance());
+				try
+				{
+					m.invoke(classToLoad.newInstance());
+				}
+				catch (Exception e)
+				{
+					this.methodNamesNotInvoke.add(m.toString());
+				}		
 			}
-			else {
-				this.methodNamesNotInvoke.add(m.toString());
-			}
-			
+	
 		}
 	}
 	
@@ -50,14 +57,16 @@ public class RunMeRunner {
 		FileWriter fw = new FileWriter(file);
 	    BufferedWriter bw = new BufferedWriter(fw);
 
-	    bw.write(String.valueOf(this.methodCount));
+	    bw.write(String.valueOf("Gesamtmethoden: "+ this.methodCount));
 	    bw.write("\n");
 	    bw.write("\n");
-	    for (String s : this.methodNamesWithRunMe) {
-	    	bw.write(s);
-	    }
+//	    for (String s : this.methodNamesWithRunMe) {
+//	    	bw.write(s);
+//	    }
+	    bw.write(String.valueOf("Gesamtmethoden mit RunMe: " + this.methodNamesWithRunMe.size()));
 	    bw.write("\n");
 	    bw.write("\n");
+	    bw.write("RunMe Methoden not Invocable: ");
 	    for (String s : this.methodNamesNotInvoke) {
 	    	bw.write(s);
 	    }

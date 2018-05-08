@@ -18,10 +18,11 @@ public class App
 
 		String propName = cmd.getOptionValue("p");
 		String txtName = cmd.getOptionValue("o");
-
+		
 		if(propName == null)
 		{
 			//Exception
+			
 		}
 		else
 		{
@@ -40,9 +41,10 @@ public class App
 
 
 
-
-    		System.out.println(runMe.getMethodCount());
-    		System.out.println(runMe.getMethodNamesNotInvoke());
-    		System.out.println(runMe.getMethodNamesWithRunMe());
+			System.out.println("Ab hier Gesamtausgabe: ");
+    		System.out.println("Gesamtmethodenanzahl: "+ runMe.getMethodCount());
+    		System.out.println("RunMe Methoden: "+ runMe.getMethodNamesWithRunMe());
+    		System.out.println("Not Accesseble: "+ runMe.getMethodNamesNotInvoke());
+    		
     }
 }

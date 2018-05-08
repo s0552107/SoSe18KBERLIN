@@ -7,21 +7,29 @@ public class MyClassWithRunMes {
 	@RunMe(
 			)
 	public static void eins () {
-		System.out.println("1");
+		System.out.println("eins");
 	}
+	
 	@RunMe(
 			)
-	public static void zwei () {
-		System.out.println("2");
+	static void zwei () {
+		System.out.println("zwei");
 	}
 
 	public static void drei () {
-		System.out.println("3");
+		System.out.println("drei");
 	}
+	
 	@RunMe(
 			)
-	public static void vier () {
-		System.out.println("4");
+	public static void vier (String vier) {
+		System.out.println(vier);
+	}
+	
+	@RunMe(
+			)
+	private static void fuenf () {
+		System.out.println("fuenf");
 	}
 
 	

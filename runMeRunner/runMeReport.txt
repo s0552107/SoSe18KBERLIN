@@ -1,5 +1,5 @@
-4
+Gesamtmethoden: 5
 
-public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.eins()public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.zwei()public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.vier()
+Gesamtmethoden mit RunME: 4
 
-public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.drei()
+public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.vier(java.lang.String)private static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.fuenf()
