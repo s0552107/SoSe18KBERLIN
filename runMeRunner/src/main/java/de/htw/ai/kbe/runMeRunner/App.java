@@ -1,6 +1,7 @@
 package de.htw.ai.kbe.runMeRunner;
 
 import org.apache.commons.cli.*;
+import java.io.*;
 
 public class App 
 {
@@ -26,16 +27,25 @@ public class App
 		}
 		else
 		{
-			if(txtName == null)
+			try 
 			{
-				runMe.loadMethods(propName);
-				runMe.writeMethods("runMeReport.txt");//startRunMeRunner(propName) —> default muss TxtName angegeben sein
+				
+			
+				if(txtName == null)
+				{
+					runMe.loadMethods(propName);
+					runMe.writeMethods("runMeReport.txt");//startRunMeRunner(propName) —> default muss TxtName angegeben sein
+				}
+				else
+				{
+					runMe.loadMethods(propName);
+					runMe.writeMethods(txtName);
+					//startRuneMeRunner(prop, txtName)
+				}
 			}
-			else
-			{
-				runMe.loadMethods(propName);
-				runMe.writeMethods(txtName);
-				//startRuneMeRunner(prop, txtName)
+			catch (ClassNotFoundException e) {
+				System.out.println("no executable class");
+				
 			}
 		}
 
