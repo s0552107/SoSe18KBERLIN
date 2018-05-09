@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class PropsFileUtil {
 
-	public static Properties readPropsFile( String fName) throws PropsFileReadExceptison {
+	public static Properties readPropsFile( String fName) throws PropsFileReadException {
 		try {
 			File file = new File(fName);
 			FileInputStream fileInput = new FileInputStream(file);
