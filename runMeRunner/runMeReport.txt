@@ -1,5 +1,5 @@
 Gesamtmethoden: 5
 
-Gesamtmethoden mit RunME: 4
+Gesamtmethoden mit RunMe: 4
 
-public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.vier(java.lang.String)private static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.fuenf()
+RunMe Methoden not Invocable: public static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.vier(java.lang.String)private static void de.htw.ai.kbe.runMeRunner.MyClassWithRunMes.fuenf()

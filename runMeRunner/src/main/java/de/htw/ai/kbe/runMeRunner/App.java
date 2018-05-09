@@ -22,7 +22,7 @@ public class App
 		if(propName == null)
 		{
 			//Exception
-			
+			System.out.println("no property-file given, try again");
 		}
 		else
 		{

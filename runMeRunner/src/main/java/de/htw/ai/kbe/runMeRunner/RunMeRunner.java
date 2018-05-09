@@ -6,7 +6,7 @@ import java.util.List;
 import java.io.*;
 
 
-import de.htw.ai.kbe.de.PropsFileUtil.PropsFileUtil;
+import de.htw.ai.kbe.de.PropsFileUtil.*;
 
 public class RunMeRunner {
 	int methodCount = 0;
@@ -17,7 +17,7 @@ public class RunMeRunner {
 	List<String> methodNamesNotInvoke = new ArrayList<String>();
 	
 
-	public void loadMethods(String propName) throws FileNotFoundException, Exception{
+	public void loadMethods(String propName) throws  ClassNotFoundException, PropsFileReadException, IllegalAccessException, InstantiationException {
 		//System.out.println(PropsFileUtil.readPropsFile("app.properties").getProperty("classToLoad"));
 		String className = PropsFileUtil.readPropsFile(propName).getProperty("classToLoad"); ///"app.properties"
 		Class<?> classToLoad = Class.forName(className);
