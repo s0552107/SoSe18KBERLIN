@@ -7,8 +7,8 @@
         <servlet-name>Songs Servlet</servlet-name>
         <servlet-class>de.htw.ai.kbe.songsServlet.SongsServlet</servlet-class>
         <init-param>
-            <param-name>signature</param-name>
-            <param-value>"Hello there!"</param-value>
+            <param-name>fileName</param-name>
+            <param-value>"songs.jason"</param-value>
         </init-param>
     </servlet>
     
