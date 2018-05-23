@@ -14,16 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Songs {
-	public static void main(String[] args) {		
-		try {
-		List<Song> readSongs = readJSONToSongs("src/main/resources/songs.json");		
-		System.out.println("READ JSON: # of songs = " + readSongs.get(0));
-        
-		
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-	}
+
+	
 
 	private static Map<Integer,Song> storage;
 	private static Songs instance = null;
@@ -44,16 +36,22 @@ public class Songs {
 	
 	private static void initSomeSongs() {
 		
-		Song bob = new Song.Builder(23123, "lol")
-				.artist("lo")
-				.album("a")
-				.released(1212).build();
+		Song lars = new Song.Builder(231213, "lola")
+				.artist("lao")
+				.album("aa")
+				.released(12122).build();
 		
-		storage.put(bob.getId(), bob);
+		storage.put(lars.getId(), lars);
+		Song conrad = new Song.Builder(231423, "lolz")
+				.artist("loz")
+				.album("az")
+				.released(12122).build();
+		
+		storage.put(conrad.getId(), conrad);
 		
 		try {
 
-			List<Song> readSongs = readJSONToSongs("src/main/resources/songs.json");
+			List<Song> readSongs = Parser.readJSONToSongs("src/main/resources/songs.json");
 			
 			Song bitte = new  Song.Builder(readSongs.get(1).getId(),readSongs.get(1).getTitel()).build();
 			storage.put(bitte.getId(), bitte);
@@ -68,18 +66,6 @@ public class Songs {
 
 	}
 	
-	@SuppressWarnings("unchecked")
-	static List<Song> readJSONToSongs (String filename) throws FileNotFoundException, IOException {
-//		Song ccc = new Song.Builder(999, "kekaasdada").build();
-//		storage.put(ccc.getId(), ccc);
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
-//			Song ddd = new Song.Builder(88, "lololollolol").build();
-//			storage.put(ddd.getId(), ddd);
-			return (List<Song>) objectMapper.readValue(is, List.class);
-		}
-	}
 	
 	public Song getSong(Integer id) {
 		return storage.get(id);
