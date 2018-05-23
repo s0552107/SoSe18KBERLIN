@@ -16,31 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 
 public class SongsServlet extends HttpServlet {
+	
 
-	private static final long serialVersionUID = 1L;
-
-	private String mySignature = null;
+	//private Songs songs;
 
 	public void init(ServletConfig servletConfig) throws ServletException {
-		this.mySignature = servletConfig.getInitParameter("signature");
+	//	this.Songs =  ReadJSONToSongs (servletConfig.getInitParameter("fileName"));
 	}
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// alle Parameter (keys)
-		Enumeration<String> paramNames = request.getParameterNames();
-
-		String responseStr = "";
-		String param = "";
-		while (paramNames.hasMoreElements()) {
-			param = paramNames.nextElement();
-			responseStr = responseStr + param + "=" + request.getParameter(param) + "\n";
-		}
-		response.setContentType("text/plain");
-		try (PrintWriter out = response.getWriter()) {
-			responseStr += "\n" + mySignature;
-			out.println(responseStr);
-		}
+		
 	}
 
 	@Override
@@ -53,7 +39,6 @@ public class SongsServlet extends HttpServlet {
 		}
 	}
 	
-	protected String getSignature () {
-		return this.mySignature;
-	}
+	
+	
 }
