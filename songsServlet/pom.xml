@@ -6,7 +6,11 @@
   <artifactId>songsServlet</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
+<<<<<<< HEAD
+
+=======
  
+>>>>>>> 89a577a70857c917698657f8e865aef34963597f
 
   <name>songsServlet</name>
 
