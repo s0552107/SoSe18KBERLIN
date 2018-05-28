@@ -106,6 +106,6 @@ public class Song {
 	@Override
 	public String toString() {
 		return "Song [id=" + id + ", firstName=" + titel + ", lastName=" + artist + ", mobile=" + album
-				+ ", emailAddress=" + released +"]\n";
+				+ ", released=" + released +"]\n";
 	}
 }

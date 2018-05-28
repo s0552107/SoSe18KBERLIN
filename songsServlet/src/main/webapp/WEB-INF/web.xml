@@ -6,10 +6,6 @@
    <servlet>
         <servlet-name>Songs Servlet</servlet-name>
         <servlet-class>de.htw.ai.kbe.songsServlet.SongsServlet</servlet-class>
-        <init-param>
-            <param-name>fileName</param-name>
-            <param-value>"songs.jason"</param-value>
-        </init-param>
     </servlet>
     
     <servlet-mapping>

@@ -35,35 +35,17 @@ public class Songs {
 	
 	
 	private static void initSomeSongs() {
-		
-		Song lars = new Song.Builder(231213, "lola")
-				.artist("lao")
-				.album("aa")
-				.released(12122).build();
-		
-		storage.put(lars.getId(), lars);
-		Song conrad = new Song.Builder(231423, "lolz")
-				.artist("loz")
-				.album("az")
-				.released(12122).build();
-		
-		storage.put(conrad.getId(), conrad);
-		
-		try {
-
-			List<Song> readSongs = Parser.readJSONToSongs("src/main/resources/songs.json");
-			
-			Song bitte = new  Song.Builder(readSongs.get(1).getId(),readSongs.get(1).getTitel()).build();
-			storage.put(bitte.getId(), bitte);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
-
+//		
+//		Song Pokerface = new Song.Builder(1, "Pokerface")
+//				.artist("Lady Gaga")
+//				.album("Pokerface")
+//				.released(2014).build();		
+//		storage.put(Pokerface.getId(), Pokerface);
+//		Song WeWillRockYou = new Song.Builder(2, "We will rock you")
+//				.artist("Queen")
+//				.album("Queens")
+//				.released(1992).build();		
+//		storage.put(WeWillRockYou.getId(), WeWillRockYou);	
 	}
 	
 	

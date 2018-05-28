@@ -16,6 +16,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -45,6 +46,7 @@ public class Parser {
 	@SuppressWarnings("unchecked")
 	static List<Song> readJSONToSongs(String filename) throws FileNotFoundException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
 			return (List<Song>) objectMapper.readValue(is, new TypeReference<List<Song>>(){});
 		}
