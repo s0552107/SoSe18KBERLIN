@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="runMeRunner" />
+        <module name="songsServlet" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="runMeRunner" target="${jdk.version}" />
+      <module name="songsServlet" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

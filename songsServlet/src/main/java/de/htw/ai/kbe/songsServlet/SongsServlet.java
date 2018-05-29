@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SongsServlet extends HttpServlet {
 	
 	Songs songs = Songs.getInstance();
+	Enumeration enumeration;
+
 	
 	public void init(ServletConfig servletConfig) throws ServletException {
 		try {
@@ -30,9 +32,9 @@ public class SongsServlet extends HttpServlet {
 			for (Song s : initSongs)
 				  songs.addSong(s);			
 		}
-		catch (Exception e) {	
+		catch (Exception e) {
 
-		}	
+		}
 		//TEST
 //		Song BadRomance = new Song.Builder(3, "Bad Romance")
 //				.artist("Lady Gaga")
@@ -43,7 +45,8 @@ public class SongsServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		Enumeration enumeration = request.getParameterNames();
+
+		enumeration = request.getParameterNames();
 		String parameterName = "";
 		while(enumeration.hasMoreElements())
 			parameterName = (String) enumeration.nextElement();
