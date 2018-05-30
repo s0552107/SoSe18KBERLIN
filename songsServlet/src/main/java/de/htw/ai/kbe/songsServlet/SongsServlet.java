@@ -23,12 +23,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SongsServlet extends HttpServlet {
 	
 	Songs songs = Songs.getInstance();
-	Enumeration enumeration;
+	
 
+	
+	private void sendAsJson(
+			HttpServletResponse response, 
+			Object obj) throws IOException {
+		
+			ObjectMapper mapper = new ObjectMapper();
+			
+			response.setContentType("application/json");
+			
+			String res = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+			     
+			PrintWriter out = response.getWriter();
+			  
+			out.print(res);
+			out.flush();
+	}
+	
 	
 	public void init(ServletConfig servletConfig) throws ServletException {
 		try {
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Downloads/songs.json");
 			for (Song s : initSongs)
 				  songs.addSong(s);			
 		}
@@ -45,28 +62,44 @@ public class SongsServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String accept = request.getHeader("Accept");
 
-		enumeration = request.getParameterNames();
-		String parameterName = "";
-		while(enumeration.hasMoreElements())
-			parameterName = (String) enumeration.nextElement();
-		if (parameterName.equals("all")){
-			String responseString = "";
-			response.setContentType("text/plain");
-			try (PrintWriter out = response.getWriter()) {
-				for (Song s : songs.getAllSongs()) {
-					responseString += s.toString();
+		
+		
 			
-				}
-				out.println(responseString);	
-			}			
-		}
-		else if (parameterName.equals("songId")){
-			try (PrintWriter out = response.getWriter()) {
+		if (accept.contains("application/json"))
+		{
 			
-			out.println(songs.getSong(Integer.valueOf(request.getParameter("songId"))).toString());
+			Enumeration<String> enumeration = request.getParameterNames();
+			String parameterName = "";
+			while(enumeration.hasMoreElements())
+				parameterName = (String) enumeration.nextElement();
+			if (parameterName.equals("all")){
+				String responseString = "";
+				response.setContentType("application/json");
+				try (PrintWriter out = response.getWriter()) {
+					for (Song s : songs.getAllSongs()) {
+						
+						
+					
+						
+						sendAsJson(response, s);
+					}
+					
+		
+
+					
+				}			
 			}
-		}		
+			else if (parameterName.equals("songId")){
+				try (PrintWriter out = response.getWriter()) {
+				
+				out.println(songs.getSong(Integer.valueOf(request.getParameter("songId"))).toString());
+				}
+			}
+		}
+				
 	}
 
 	@Override
