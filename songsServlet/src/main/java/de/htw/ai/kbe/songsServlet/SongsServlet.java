@@ -45,7 +45,8 @@ public class SongsServlet extends HttpServlet {
 	
 	public void init(ServletConfig servletConfig) throws ServletException {
 		try {
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Downloads/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/songs.json");
+//			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Downloads/songs.json");
 			for (Song s : initSongs)
 				  songs.addSong(s);			
 		}
@@ -63,11 +64,8 @@ public class SongsServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String accept = request.getHeader("Accept");
-
+		String accept = request.getHeader("Accept");	
 		
-		
-			
 		if (accept.contains("application/json"))
 		{
 			
@@ -80,16 +78,36 @@ public class SongsServlet extends HttpServlet {
 				response.setContentType("application/json");
 				try (PrintWriter out = response.getWriter()) {
 					for (Song s : songs.getAllSongs()) {
-						
-						
-					
-						
+						//Parser.writeSongsToJSON(songs, "out.json");
 						sendAsJson(response, s);
-					}
-					
-		
 
-					
+					}
+
+				}			
+			}
+			else if (parameterName.equals("songId")){
+				try (PrintWriter out = response.getWriter()) {
+				
+				out.println(songs.getSong(Integer.valueOf(request.getParameter("songId"))).toString());
+				}
+			}
+		}
+		else if (accept.contains("application/xml"))
+		{
+			Enumeration<String> enumeration = request.getParameterNames();
+			String parameterName = "";
+			while(enumeration.hasMoreElements())
+				parameterName = (String) enumeration.nextElement();
+			if (parameterName.equals("all")){
+				String responseString = "";
+				response.setContentType("application/xml");
+				try (PrintWriter out = response.getWriter()) {
+					for (Song s : songs.getAllSongs()) {
+					//	Parser.writeSongsToXML(songs, "out.xml");
+						out.print(s.toString());
+
+					}
+
 				}			
 			}
 			else if (parameterName.equals("songId")){
