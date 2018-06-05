@@ -15,35 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.htwBerlin.ai.kbe.bean.Song;
 
 public class SongBook {
-	public static void main(String[] args) {
-//		OurSong song = new OurSong(1, "A new title", "MeMyself and I", "A new Album", 2017);
-//		filename = "outJAXBOneSong.xml";
-//		try {
-//			writeSongToXML(song, filename);
-//			OurSong readSong = readXMLToSong(filename);
-//			System.out.println("READ xml: songid = " + readSong.getId());
-//		} catch (Exception e) { // not good, but saves space!
-//			e.printStackTrace();
-//		}
-		
-//		try {
-//			Songs readSongs = readXMLToSongs("songs.xml");
-//			System.out.println("READ xml: # of songs = " + readSongs.getSong().size());
-//          filename = "outJAXBManySongs.xml";
-//			writeSongsToXML(readSongs, filename);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
-		try {
-		List<Song> readSongs = readJSONToSongs("src/main/resources/songs.json");		
-		System.out.println("READ JSON: # of songs = " + readSongs.get(0));
-        
-		
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-	}
 
 	private static Map<Integer,Song> storage;
 	private static SongBook instance = null;
@@ -64,42 +35,23 @@ public class SongBook {
 	
 	private static void initSomeSongs() {
 		
-		Song bob = new Song.Builder(23123, "lol")
-				.artist("lo")
-				.album("a")
-				.released(1212).build();
-		
-		storage.put(bob.getId(), bob);
-		
+//		Song bob = new Song.Builder(23123, "lol")
+//				.artist("lo")
+//				.album("a")
+//				.released(1212).build();
+//		
+//		storage.put(bob.getId(), bob);
 		try {
-
-			List<Song> readSongs = readJSONToSongs("src/main/resources/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("resources/songs.json");
+			for (Song s : initSongs)
+				storage.put(s.getId(), s);
+		}
+		catch (Exception e) {
 			
-			Song bitte = new  Song.Builder(readSongs.get(1).getId(),readSongs.get(1).getTitel()).build();
-			storage.put(bitte.getId(), bitte);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
-		
-		
-		
-
 	}
 	
-	@SuppressWarnings("unchecked")
-	static List<Song> readJSONToSongs (String filename) throws FileNotFoundException, IOException {
-//		Song ccc = new Song.Builder(999, "kekaasdada").build();
-//		storage.put(ccc.getId(), ccc);
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
-//			Song ddd = new Song.Builder(88, "lololollolol").build();
-//			storage.put(ddd.getId(), ddd);
-			return (List<Song>) objectMapper.readValue(is, List.class);
-		}
-	}
 	
 	public Song getSong(Integer id) {
 		return storage.get(id);

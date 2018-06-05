@@ -1,4 +1,4 @@
-package de.htw.ai.kbe.songsServlet;
+package de.htwBerlin.ai.kbe.storage;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -18,13 +18,13 @@ import javax.xml.bind.Unmarshaller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import de.htwBerlin.ai.kbe.bean.Song;
 
 
 public class Parser {
 	
-	 static void writeSongsToXML(Songs songs, String filename) throws JAXBException, FileNotFoundException, IOException {
-		JAXBContext context = JAXBContext.newInstance(Songs.class);
+	 static void writeSongsToXML(SongBook songs, String filename) throws JAXBException, FileNotFoundException, IOException {
+		JAXBContext context = JAXBContext.newInstance(SongBook.class);
 		Marshaller marshaller = context.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		try (OutputStream os = new BufferedOutputStream(new FileOutputStream(filename))) {
@@ -34,15 +34,15 @@ public class Parser {
 	}
 
 	// Reads a list of songs from an XML-file into Songs.java
-	 static Songs readXMLToSongs(String filename) throws JAXBException, FileNotFoundException, IOException {
-		JAXBContext context = JAXBContext.newInstance(Songs.class);
+	 static SongBook readXMLToSongBook(String filename) throws JAXBException, FileNotFoundException, IOException {
+		JAXBContext context = JAXBContext.newInstance(SongBook.class);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
-			return (Songs) unmarshaller.unmarshal(is);
+			return (SongBook) unmarshaller.unmarshal(is);
 		}
 	}
 
-	// Reads a list of songs from a JSON-file into List<Song>
+	// Reads a list of SongBook from a JSON-file into List<Song>
 	@SuppressWarnings("unchecked")
 	 static List<Song> readJSONToSongs(String filename) throws FileNotFoundException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -53,10 +53,10 @@ public class Parser {
 	}
 
 	// Write a List<Song> to a JSON-file
-	 static void writeSongsToJSON(List<Song> songs, String filename) throws FileNotFoundException, IOException {
+	 static void writeSongsToJSON(List<Song> SongBook, String filename) throws FileNotFoundException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try (OutputStream os = new BufferedOutputStream(new FileOutputStream(filename))) {
-			objectMapper.writeValue(os, songs);
+			objectMapper.writeValue(os, SongBook);
 		}
 	}
 

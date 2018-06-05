@@ -21,7 +21,7 @@ import de.htwBerlin.ai.kbe.storage.SongBook;
 @Path("/songs")
 public class SongsWebService {
 
-	//GET http://localhost:8080/helloJAXRS/rest/songs
+	//GET http://localhost:8080/songsRX/rest/songs
 	//Returns all songs
 	@GET 
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -30,7 +30,7 @@ public class SongsWebService {
 		return SongBook.getInstance().getAllSongs();
 	}
 
-	//GET http://localhost:8080/helloJAXRS/rest/songs/1
+	//GET http://localhost:8080/songsRX/rest/songs/1
 	//Returns: 200 and song with id 1
 	//Returns: 404 on provided id not found
 	@GET
