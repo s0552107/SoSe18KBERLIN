@@ -71,7 +71,11 @@ public class SongsWebService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("/{id}")
     public Response updateSong(@PathParam("id") Integer id, Song song) {
-        return Response.status(Response.Status.METHOD_NOT_ALLOWED).entity("PUT not implemented").build();
+		boolean bool = SongBook.getInstance().updateSong(id, song);
+		if (bool)
+			return Response.status(Response.Status.NO_CONTENT).entity("Song" + id + " succesfully updated").build();
+		else
+			return Response.status(Response.Status.NOT_FOUND).entity("Song " + id + " doesn’t exist").build();
     }
 	
 	//DELETE http://localhost:8080/helloJAXRS/rest/songs/1
@@ -80,6 +84,10 @@ public class SongsWebService {
 	@DELETE
 	@Path("/{id}")
 	public Response delete(@PathParam("id") Integer id) {
-		return Response.status(Response.Status.METHOD_NOT_ALLOWED).entity("DELETE not implemented").build();
+		boolean bool = SongBook.getInstance().deleteSong(id);
+		if(bool)
+			return Response.status(Response.Status.NO_CONTENT).entity("Song" + id + " deleted").build();
+		else
+			return Response.status(Response.Status.NOT_FOUND).entity("Song " + id + " doesn’t exist").build();
 	}
 }

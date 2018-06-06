@@ -58,7 +58,7 @@ public class SongsClient {
 		System.out.println("------- Creating or posting songs:");
 		for (int i = 1; i <= 5; i++) {
 			Song song = new Song();
-			song.setTitel("FirstName " + i);
+			song.setTitle("FirstName " + i);
 			song.setArtist("LastName " + i);
 			Response response;
 			Entity<Song> entity;

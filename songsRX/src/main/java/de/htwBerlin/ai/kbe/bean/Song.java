@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "song")
 public class Song {
 	private Integer id;
-	private String titel;
+	private String title;
 	private String artist;
 	private String album;
 	private Integer released;
@@ -18,14 +18,14 @@ public class Song {
 	public static class Builder {
 		// required parameter
 		private Integer id;
-		private String titel;
+		private String title;
 		private String artist;
 		private String album;
 		private Integer released;
 
-		public Builder(Integer id, String titel) {
+		public Builder(Integer id, String title) {
 			this.id = id;
-			this.titel = titel;
+			this.title = title;
 		}
 
 		public Builder artist(String val) {
@@ -51,7 +51,7 @@ public class Song {
 
 	private Song(Builder builder) {
 		this.id = builder.id;
-		this.titel = builder.titel;
+		this.title = builder.title;
 		this.artist = builder.artist;
 		this.album = builder.album;
 		this.released = builder.released;
@@ -66,12 +66,12 @@ public class Song {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getTitel() {
-		return titel;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitel(String titel) {
-		this.titel = titel;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getArtist() {
@@ -105,7 +105,7 @@ public class Song {
 
 	@Override
 	public String toString() {
-		return "Song [id=" + id + ", firstName=" + titel + ", lastName=" + artist + ", mobile=" + album
+		return "Song [id=" + id + ", firstName=" + title + ", lastName=" + artist + ", mobile=" + album
 				+ ", emailAddress=" + released +"]";
 	}
 }

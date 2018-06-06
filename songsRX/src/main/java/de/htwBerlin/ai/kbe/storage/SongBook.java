@@ -45,7 +45,7 @@ public class SongBook {
 		// Leon:  /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 		// Emil: /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 		try {
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
 			for (Song s : initSongs)
 				storage.put(s.getId(), s);
 		}
@@ -55,6 +55,28 @@ public class SongBook {
 		
 	}
 	
+	
+	public boolean updateSong(Integer id, Song song)
+	{
+		if (storage.containsKey(id)) 
+		{
+			song.setId(id);
+			storage.put(id, song);
+			return true;
+		}
+		else	
+			return false;
+	}
+	
+	public boolean deleteSong(Integer id) {
+		if (storage.containsKey(id))
+		{
+			storage.remove(id);
+			return true;
+		}
+		else
+			return false;
+	}
 	
 	public Song getSong(Integer id) {
 		return storage.get(id);
@@ -73,12 +95,12 @@ public class SongBook {
 	
 	// returns true (success), when song exists in map and was updated
 	// returns false, when song does not exist in map
-	public boolean updateSong(Song song) {
-		throw new UnsupportedOperationException("updateSong: not yet implemented");
-	}
-	
-	// returns deleted song
-	public Song deleteSong(Integer id) {
-		throw new UnsupportedOperationException("deleteSong: not yet implemented");
-	}
+//	public boolean updateSong(Song song) {
+//		throw new UnsupportedOperationException("updateSong: not yet implemented");
+//	}
+//	
+//	// returns deleted song
+//	public Song deleteSong(Integer id) {
+//		throw new UnsupportedOperationException("deleteSong: not yet implemented");
+//	}
 }
