@@ -60,7 +60,8 @@ public class SongsWebService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response createSong(Song song) {
 		System.out.println("createSong: Received song: " + song.toString());
-		return Response.status(Response.Status.CREATED).entity(SongBook.getInstance().addSong(song)).build();
+
+		return Response.status(Response.Status.CREATED).header("Location", song.getId()).build();
 	}
 	
 	//PUT http://localhost:8080/helloJAXRS/rest/songs/1 with updated song in payload
