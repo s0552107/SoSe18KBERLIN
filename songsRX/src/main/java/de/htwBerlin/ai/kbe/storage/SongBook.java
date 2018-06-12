@@ -46,7 +46,7 @@ public class SongBook {
 		// Emil: /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 		// EmilMac: /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources
 		try {
-			List<Song> initSongs = Parser.readJSONToSongs("/Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
 			for (Song s : initSongs)
 				storage.put(s.getId(), s);
 		}
