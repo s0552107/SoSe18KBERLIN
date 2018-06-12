@@ -4,3 +4,5 @@ target/
 .classpath
 /.metadata/
 /.recommenders/
+songsRX/.idea/
+songsServlet/.idea/
