@@ -44,8 +44,9 @@ public class SongBook {
 		
 		// Leon:  /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 		// Emil: /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+		// EmilMac: /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources
 		try {
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
 			for (Song s : initSongs)
 				storage.put(s.getId(), s);
 		}
@@ -58,7 +59,7 @@ public class SongBook {
 	
 	public boolean updateSong(Integer id, Song song)
 	{
-		if (storage.containsKey(id)) 
+		if (storage.containsKey(id) && song.getId() != null && song.getId() == id)
 		{
 			song.setId(id);
 			storage.put(id, song);
