@@ -86,7 +86,9 @@ public class SongBook {
 	public Collection<Song> getAllSongs() {
 		return storage.values();
 	}
-	
+
+
+	//todo
 	public Integer addSong(Song song) {
 		// Fuer Beleg 3: Das koennen Sie im Songs' store NICHT machen!
 		song.setId((int)storage.keySet().stream().count() + 1);
