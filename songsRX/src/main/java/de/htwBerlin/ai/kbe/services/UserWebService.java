@@ -22,13 +22,20 @@ public class UserWebService {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response getToken(@QueryParam("userId") String userId) {
-		Boolean bool = UserBook.getInstance().findUser(userId);
-		if(bool)
-			return  Response.status(200).entity("Song" + userId + " succesfully updated").build();
-		else
-			return Response.status(403).entity("no authification").build();
-				
-				//Response.ok(userId).build();
+		try {
+			Boolean bool = UserBook.getInstance().findUser(userId);
+			if (bool) {
+				String token = UserBook.getInstance().createToken(userId);
+				return Response.status(200).entity(token).build();
+			}
+			else
+				return Response.status(403).entity("no authification").build();
+		}
+		catch (Exception e)
+		{
+			return Response.status(403).entity(e.getMessage()).build();
+		}
+		//Response.ok(userId).build();
 	}
 
 }

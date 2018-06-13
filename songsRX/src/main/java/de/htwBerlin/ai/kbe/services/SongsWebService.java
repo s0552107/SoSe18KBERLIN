@@ -11,10 +11,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import de.htwBerlin.ai.kbe.bean.Song;
+import de.htwBerlin.ai.kbe.server.Permisson;
 import de.htwBerlin.ai.kbe.storage.SongBook;
+import org.glassfish.jersey.inject.hk2.RequestContext;
 
 
 // URL fuer diesen Service ist: http://localhost:8080/songsRX/rest/songs
@@ -23,9 +26,11 @@ public class SongsWebService {
 
 	//GET http://localhost:8080/songsRX/rest/songs
 	//Returns all songs
-	@GET 
+	@GET
+	@Permisson
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Collection<Song> getAllSongs() {
+
 		System.out.println("getAllSongs: Returning all songs!");
 		return SongBook.getInstance().getAllSongs();
 	}
@@ -34,6 +39,7 @@ public class SongsWebService {
 	//Returns: 200 and song with id 1
 	//Returns: 404 on provided id not found
 	@GET
+	@Permisson
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Response getSong(@PathParam("id") Integer id) {
@@ -68,6 +74,7 @@ public class SongsWebService {
     //Returns 204 on successful update
 	//Returns 404 on song with provided id not found
 	//Returns 400 on id in URL does not match id in song
+	//todo
 	@PUT
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("/{id}")
