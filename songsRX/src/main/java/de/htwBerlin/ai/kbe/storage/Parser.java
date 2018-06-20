@@ -44,7 +44,7 @@ public class Parser {
 
 	// Reads a list of SongBook from a JSON-file into List<Song>
 	@SuppressWarnings("unchecked")
-	 static List<Song> readJSONToSongs(String filename) throws FileNotFoundException, IOException {
+	 public static List<Song> readJSONToSongs(String filename) throws FileNotFoundException, IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
