@@ -10,9 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 
 import de.htwBerlin.ai.kbe.bean.Song;
 import de.htwBerlin.ai.kbe.server.Permisson;
@@ -59,15 +57,19 @@ public class SongsWebService {
 	// Besser: Status Code 201 und URI fuer den neuen Eintrag im http-header 'Location' zurueckschicken, also:
 	// Location: /helloJAXRS/rest/songs/neueID
 	// Aber dazu brauchen wir "dependency injection", also spaeter
-	// @Context UriInfo uriInfo
-	// return Response.created(uriInfo.getAbsolutePath()+<newId>).build(); 
+
+	// return Response.created(uriInfo.getAbsolutePath()+<newId>).build();
+    @Context UriInfo uriInfo;
 	@POST
+    @Permisson
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response createSong(Song song) {
 		System.out.println("createSong: Received song: " + song.toString());
-
-		return Response.status(Response.Status.CREATED).header("Location", song.getId()).build();
+        int newId = SongBook.getInstance().addSong(song);
+        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+        uriBuilder.path(Integer.toString(newId));
+        return Response.created(uriBuilder.build()).build();
 	}
 	
 	//PUT http://localhost:8080/helloJAXRS/rest/songs/1 with updated song in payload
@@ -76,6 +78,7 @@ public class SongsWebService {
 	//Returns 400 on id in URL does not match id in song
 	//todo
 	@PUT
+    @Permisson
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("/{id}")
     public Response updateSong(@PathParam("id") Integer id, Song song) {
@@ -90,6 +93,7 @@ public class SongsWebService {
     //Returns 204 on successful delete
 	//Returns 404 on provided id not found
 	@DELETE
+    @Permisson
 	@Path("/{id}")
 	public Response delete(@PathParam("id") Integer id) {
 		boolean bool = SongBook.getInstance().deleteSong(id);

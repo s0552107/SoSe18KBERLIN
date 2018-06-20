@@ -5,16 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.htwBerlin.ai.kbe.bean.Song;
 
 public class SongBook {
+
 
 	private static Map<Integer,Song> storage;
 	private static SongBook instance = null;
@@ -91,9 +90,9 @@ public class SongBook {
 	//todo
 	public Integer addSong(Song song) {
 		// Fuer Beleg 3: Das koennen Sie im Songs' store NICHT machen!
-		song.setId((int)storage.keySet().stream().count() + 1);
-		storage.put(song.getId(), song);
-		return song.getId();
+        song.setId((int)storage.keySet().stream().count() + 1);
+        storage.put(song.getId(), song);
+        return song.getId();
 	}
 	
 	// returns true (success), when song exists in map and was updated
@@ -106,4 +105,12 @@ public class SongBook {
 //	public Song deleteSong(Integer id) {
 //		throw new UnsupportedOperationException("deleteSong: not yet implemented");
 //	}
+    /**
+    int newId = 0;
+        while (!(storage.containsKey(newId)) {
+        newId += 1;
+    }
+        song.setId(newId);
+		storage.put(newId, song);
+		return song.getId();**/
 }
