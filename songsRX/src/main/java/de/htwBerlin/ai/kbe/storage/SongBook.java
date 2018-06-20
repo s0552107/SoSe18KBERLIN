@@ -43,9 +43,10 @@ public class SongBook {
 //		storage.put(bob.getId(), bob);
 		
 		// Leon:  /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+		// Leon-Home: /home/ozon/Uni/SoSe18/kbe/SoSe18KBERLIN/songsRX/src/main/resources
 		// Emil: /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 		try {
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/home/ozon/Uni/SoSe18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
 			for (Song s : initSongs)
 				storage.put(s.getId(), s);
 		}
