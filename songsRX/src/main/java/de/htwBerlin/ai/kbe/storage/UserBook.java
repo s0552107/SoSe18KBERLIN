@@ -39,11 +39,12 @@ public class UserBook {
 //		
 //		storage.put(bob.getId(), bob);
 		
-		// Leon:  /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+		// Leon:  /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/user.json
 		// Emil: /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 		// EmilMac: /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources
+		//Leon Home: /home/ozon/Uni/SoSe18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/user.json
 		try {
-			List<User> initUsers = Parser.readJSONToUsers("/Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/user.json");
+			List<User> initUsers = Parser.readJSONToUsers("/home/ozon/Uni/SoSe18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/user.json");
 			for (User u : initUsers)
 				storage.put(u.getUserId(), u);
 		}
