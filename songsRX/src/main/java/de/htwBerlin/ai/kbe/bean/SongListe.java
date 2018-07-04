@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SongListe {
 	private Integer id;
 	private User owner;
-	private boolean privat;
+	private boolean privateFlag;
 	private List<Song> songlist;
 	
 
@@ -17,10 +17,10 @@ public class SongListe {
 
 	// Example of a builder:
 	public static class Builder {
-		// required parameter
+		// required parameter2018
 		private Integer id;
 		private User owner;
-		private boolean privat;
+		private boolean privateFlag;
 		private List<Song> songlist;
 
 		public Builder(Integer id, User owner) {
@@ -29,7 +29,7 @@ public class SongListe {
 		}
 
 		public Builder artist(boolean val) {
-			privat = val;
+			privateFlag = val;
 			return this;
 		}
 
@@ -46,7 +46,7 @@ public class SongListe {
 	private SongListe(Builder builder) {
 		this.id = builder.id;
 		this.owner = builder.owner;
-		this.privat = builder.privat;
+		this.privateFlag = builder.privateFlag;
 		this.songlist = builder.songlist;
 
 	}
@@ -67,12 +67,12 @@ public class SongListe {
 		this.owner = owner;
 	}
 
-	public boolean getPrivat() {
-		return privat;
+	public boolean getPrivatFlag() {
+		return privateFlag;
 	}
 
-	public void setPrivat(boolean privat) {
-		this.privat = privat;
+	public void setPrivatFlag(boolean privat) {
+		this.privateFlag = privat;
 	}
 
 	public List<Song> getSonglist() {

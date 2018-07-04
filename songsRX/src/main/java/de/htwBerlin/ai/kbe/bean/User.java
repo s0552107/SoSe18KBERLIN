@@ -1,14 +1,25 @@
 package de.htwBerlin.ai.kbe.bean;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import de.htwBerlin.ai.kbe.bean.Song.Builder;
 
 @XmlRootElement(name = "user")
+@Entity
+@Table(name="users")
 public class User {
 	
+	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
+    // bedeutet, dass der PK automatisch durch die DB vergeben wird
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	
 		private Integer id;
+		@Column(name= "userid")
 		private String userId;
 		private String lastName;
 		private String firstName;
