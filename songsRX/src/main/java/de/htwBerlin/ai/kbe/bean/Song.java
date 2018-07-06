@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @XmlRootElement(name = "song")
 @Entity 
-@Table(name="Song")
+@Table(name="song")
 public class Song {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,21 +22,41 @@ public class Song {
 
 	// needed for JAXB
 	public Song() {
+		
 	}
+//	public Song(String title, String artist="", String album="", Integer released=0) {
+//        this.title = title;
+//        this.artist=artist;
+//        this.album = album;
+//        this.released=released;
+//    }
+//	public Song(String title, String artist, String album) {
+//        this.title = title;
+//        this.artist=artist;
+//        this.album = album;
+//    }
+//	public Song(String title, String artist, Integer released) {
+//        this.title = title;
+//        this.artist=artist;
+//        this.released=released;
+//    }
+
 
 	// Example of a builder:
 	public static class Builder {
 		// required parameter
-		private Integer id;
 		private String title;
 		private String artist;
 		private String album;
 		private Integer released;
+		
+		
 
-		public Builder(Integer id, String title) {
-			this.id = id;
+		public Builder( String title) {
 			this.title = title;
 		}
+		
+		 
 
 		public Builder artist(String val) {
 			artist = val;
@@ -60,7 +80,6 @@ public class Song {
 	}
 
 	private Song(Builder builder) {
-		this.id = builder.id;
 		this.title = builder.title;
 		this.artist = builder.artist;
 		this.album = builder.album;

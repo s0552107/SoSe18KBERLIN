@@ -45,7 +45,7 @@ public class SongsWebService {
 	//Returns: 200 and song with id 1
 	//Returns: 404 on provided id not found
 	@GET
-	@Permisson
+	//@Permisson
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Response getSong(@PathParam("id") Integer id) {

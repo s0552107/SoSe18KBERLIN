@@ -40,82 +40,82 @@ public class SongsWebServiceTest extends  JerseyTest {
         return new ResourceConfig(SongsWebService.class);
     }
 
-
-    @Test
-    public void updateSongJsonPayload(){
-        Song song = new Song.Builder(9, "Jetzt geht die Party richtig los ")
-                .artist("De Randfichten")
-                .album("Heja Ho, de Randfichten sei do")
-                .released(2005).build();
-
-        Response output = target("songs/" + song.getId())
-                .request()
-                .put(Entity.entity(song, MediaType.APPLICATION_JSON));
-        assertEquals("Should return status 204", 204, output.getStatus());
-    }
-
-    @Test
-    public void updateSongXMLPayload(){
-        Song song = new Song.Builder(9, "Jetzt geht die Party richtig los ")
-                .artist("De Randfichten")
-                .album("Heja Ho, de Randfichten sei do")
-                .released(2005).build();
-
-        Response output = target("songs/" + song.getId())
-                .request()
-                .put(Entity.entity(song, MediaType.APPLICATION_XML));
-        assertEquals("Song" + song.getId() + " succesfully updated", 204, output.getStatus());
-    }
-
-    @Test
-    public void updateSongJsonWithUnknownID(){
-        Song song = new Song.Builder(99, "Jetzt geht die Party richtig los ")
-                .artist("De Randfichten")
-                .album("Heja Ho, de Randfichten sei do")
-                .released(2005).build();
-
-        Response output = target("songs/" + song.getId())
-                .request()
-                .put(Entity.entity(song, MediaType.APPLICATION_JSON));
-        assertEquals("Should return status 404", 404, output.getStatus());
-    }
-
-    @Test
-    public void updateSongXMLWithUnknownID(){
-        Song song = new Song.Builder(99, "Jetzt geht die Party richtig los ")
-                .artist("De Randfichten")
-                .album("Heja Ho, de Randfichten sei do")
-                .released(2005).build();
-
-        Response output = target("songs/" + song.getId())
-                .request()
-                .put(Entity.entity(song, MediaType.APPLICATION_XML));
-        assertEquals("Should return status 404", 404, output.getStatus());
-    }
-
-    @Test
-    public void updateSongwithoutID(){
-        Song song = new Song();
-        song.setArtist("De Randfichten");
-        song.setAlbum("Heja Ho, de Randfichten sei do");
-        song.setReleased(2005);
-        Response output = target("songs/9")
-                .request()
-                .put(Entity.entity(song, MediaType.APPLICATION_XML));
-        assertEquals("Should return status 204", 404, output.getStatus());
-    }
-
-    @Test
-    public void updateSongwithDifferentIdTargetSong(){
-        Song song = new Song.Builder(99, "Jetzt geht die Party richtig los ")
-                .artist("De Randfichten")
-                .album("Heja Ho, de Randfichten sei do")
-                .released(2005).build();
-
-        Response output = target("songs/9")
-                .request()
-                .put(Entity.entity(song, MediaType.APPLICATION_XML));
-        assertEquals("Should return status 204", 404, output.getStatus());
-    }
+//
+//    @Test
+//    public void updateSongJsonPayload(){
+//        Song song = new Song.Builder(9, "Jetzt geht die Party richtig los ")
+//                .artist("De Randfichten")
+//                .album("Heja Ho, de Randfichten sei do")
+//                .released(2005).build();
+//
+//        Response output = target("songs/" + song.getId())
+//                .request()
+//                .put(Entity.entity(song, MediaType.APPLICATION_JSON));
+//        assertEquals("Should return status 204", 204, output.getStatus());
+//    }
+//
+//    @Test
+//    public void updateSongXMLPayload(){
+//        Song song = new Song.Builder(9, "Jetzt geht die Party richtig los ")
+//                .artist("De Randfichten")
+//                .album("Heja Ho, de Randfichten sei do")
+//                .released(2005).build();
+//
+//        Response output = target("songs/" + song.getId())
+//                .request()
+//                .put(Entity.entity(song, MediaType.APPLICATION_XML));
+//        assertEquals("Song" + song.getId() + " succesfully updated", 204, output.getStatus());
+//    }
+//
+//    @Test
+//    public void updateSongJsonWithUnknownID(){
+//        Song song = new Song.Builder(99, "Jetzt geht die Party richtig los ")
+//                .artist("De Randfichten")
+//                .album("Heja Ho, de Randfichten sei do")
+//                .released(2005).build();
+//
+//        Response output = target("songs/" + song.getId())
+//                .request()
+//                .put(Entity.entity(song, MediaType.APPLICATION_JSON));
+//        assertEquals("Should return status 404", 404, output.getStatus());
+//    }
+//
+//    @Test
+//    public void updateSongXMLWithUnknownID(){
+//        Song song = new Song.Builder(99, "Jetzt geht die Party richtig los ")
+//                .artist("De Randfichten")
+//                .album("Heja Ho, de Randfichten sei do")
+//                .released(2005).build();
+//
+//        Response output = target("songs/" + song.getId())
+//                .request()
+//                .put(Entity.entity(song, MediaType.APPLICATION_XML));
+//        assertEquals("Should return status 404", 404, output.getStatus());
+//    }
+//
+//    @Test
+//    public void updateSongwithoutID(){
+//        Song song = new Song();
+//        song.setArtist("De Randfichten");
+//        song.setAlbum("Heja Ho, de Randfichten sei do");
+//        song.setReleased(2005);
+//        Response output = target("songs/9")
+//                .request()
+//                .put(Entity.entity(song, MediaType.APPLICATION_XML));
+//        assertEquals("Should return status 204", 404, output.getStatus());
+//    }
+//
+//    @Test
+//    public void updateSongwithDifferentIdTargetSong(){
+//        Song song = new Song.Builder(99, "Jetzt geht die Party richtig los ")
+//                .artist("De Randfichten")
+//                .album("Heja Ho, de Randfichten sei do")
+//                .released(2005).build();
+//
+//        Response output = target("songs/9")
+//                .request()
+//                .put(Entity.entity(song, MediaType.APPLICATION_XML));
+//        assertEquals("Should return status 204", 404, output.getStatus());
+//    }
 
 }

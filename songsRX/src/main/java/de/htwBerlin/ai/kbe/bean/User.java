@@ -10,13 +10,13 @@ import javax.persistence.Id;
 
 
 @XmlRootElement(name = "user")
-@Entity
-@Table(name="Users")
+//@Entity
+//@Table(name="Users")
 public class User {
 	
-	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
-    // bedeutet, dass der PK automatisch durch die DB vergeben wird
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+//	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
+//    // bedeutet, dass der PK automatisch durch die DB vergeben wird
+//	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	
 		private Integer id;
 		private String userId;

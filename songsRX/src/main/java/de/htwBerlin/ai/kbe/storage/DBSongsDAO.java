@@ -106,6 +106,7 @@ public class DBSongsDAO implements SongsDAO {
 				saveSong(s);
 		}
 		catch (Exception e) {
+			System.out.println(e.getMessage());
 			
 		}
     }

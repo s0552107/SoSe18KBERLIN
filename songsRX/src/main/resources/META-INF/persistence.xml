@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="songDB-PU" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="songs-PU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
-        <class>de.htwBerlin.ai.kbe.bean.User</class>
+
         <class>de.htwBerlin.ai.kbe.bean.Song</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://db.f4.htw-berlin.de:3306/_s0552107_songs"/>
+            <property name="javax.persistence.jdbc.url" 
+            		  value="jdbc:postgresql://db.f4.htw-berlin.de:5432/_s0552107__songs"/>
             <property name="javax.persistence.jdbc.user" value="s0552107"/>
             <property name="javax.persistence.jdbc.password" value="W84youbro4me"/>
 
             <!--Hibernate properties-->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="false"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
         </properties>
     </persistence-unit>
 </persistence>
