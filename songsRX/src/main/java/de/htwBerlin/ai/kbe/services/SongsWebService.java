@@ -27,17 +27,17 @@ public class SongsWebService {
 	@Inject
 	public SongsWebService(SongsDAO dao) {
 		this.songsDao = dao;
+		
 	}
 	//GET http://localhost:8080/songsRX/rest/songs
 	//Returns all songs
-	@GET
 	//@Permisson
+	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Collection<Song> getAllSongs() {
-//
-//		System.out.println("getAllSongs: Returning all songs!");
 //		return SongBook.getInstance().getAllSongs();
-		songsDao.initSongs();
+//		System.out.println("getAllSongs: Returning all songs!");
+		songsDao.initSongs();		
 		return songsDao.findAllSongs();
 	}
 

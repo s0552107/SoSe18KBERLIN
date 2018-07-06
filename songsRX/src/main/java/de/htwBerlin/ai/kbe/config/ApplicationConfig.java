@@ -10,7 +10,7 @@ import javax.ws.rs.core.Application;
 public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig(){
     	register(new DependencyBinder());
-        packages("de.htwBerlin.ai.kbe.service");
+        packages("de.htwBerlin.ai.kbe.services");
 
     }
 }

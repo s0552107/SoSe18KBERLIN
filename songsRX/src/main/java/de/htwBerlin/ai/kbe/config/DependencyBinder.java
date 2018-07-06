@@ -14,7 +14,7 @@ public class DependencyBinder extends AbstractBinder {
     @Override
     protected void configure() {
         bind (Persistence
-                .createEntityManagerFactory("songDB-PU"))
+                .createEntityManagerFactory("songs-PU"))
                 .to(EntityManagerFactory.class);
         bind(DBSongsDAO.class)
         .to(SongsDAO.class)

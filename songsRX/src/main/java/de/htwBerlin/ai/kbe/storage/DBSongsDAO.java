@@ -39,7 +39,7 @@ public class DBSongsDAO implements SongsDAO {
     public Collection<Song> findAllSongs() {
         EntityManager em = emf.createEntityManager();
         try {
-            TypedQuery<Song> query = em.createQuery("SELECT * FROM Song", Song.class);
+            TypedQuery<Song> query = em.createQuery("SELECT s FROM Song s", Song.class);
             return query.getResultList();
         } finally {
             em.close();
@@ -102,8 +102,14 @@ public class DBSongsDAO implements SongsDAO {
     		// Leon /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
     		// Emil /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
-			for (Song s : initSongs)
-				saveSong(s);
+			for (Song s : initSongs) {
+				Song song = new Song.Builder(s.getTitle())
+						.artist(s.getArtist())
+						.album(s.getAlbum())
+						.released(s.getReleased()).build();
+				saveSong(song);
+			}
+				
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
