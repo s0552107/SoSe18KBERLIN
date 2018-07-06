@@ -7,11 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import de.htwBerlin.ai.kbe.bean.Song.Builder;
+
 
 @XmlRootElement(name = "user")
 @Entity
-@Table(name="users")
+@Table(name="Users")
 public class User {
 	
 	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
@@ -19,7 +19,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	
 		private Integer id;
-		@Column(name= "userid")
 		private String userId;
 		private String lastName;
 		private String firstName;

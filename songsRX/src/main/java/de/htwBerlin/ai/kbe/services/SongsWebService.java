@@ -16,21 +16,29 @@ import de.htwBerlin.ai.kbe.bean.Song;
 import de.htwBerlin.ai.kbe.server.Permisson;
 import de.htwBerlin.ai.kbe.storage.SongBook;
 import org.glassfish.jersey.inject.hk2.RequestContext;
-
+import de.htwBerlin.ai.kbe.storage.SongsDAO;
+import javax.inject.Inject;
 
 // URL fuer diesen Service ist: http://localhost:8080/songsRX/rest/songs
 @Path("/songs")
 public class SongsWebService {
-
+	private SongsDAO songsDao;
+	
+	@Inject
+	public SongsWebService(SongsDAO dao) {
+		this.songsDao = dao;
+	}
 	//GET http://localhost:8080/songsRX/rest/songs
 	//Returns all songs
 	@GET
-	@Permisson
+	//@Permisson
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Collection<Song> getAllSongs() {
-
-		System.out.println("getAllSongs: Returning all songs!");
-		return SongBook.getInstance().getAllSongs();
+//
+//		System.out.println("getAllSongs: Returning all songs!");
+//		return SongBook.getInstance().getAllSongs();
+		songsDao.initSongs();
+		return songsDao.findAllSongs();
 	}
 
 	//GET http://localhost:8080/songsRX/rest/songs/1
