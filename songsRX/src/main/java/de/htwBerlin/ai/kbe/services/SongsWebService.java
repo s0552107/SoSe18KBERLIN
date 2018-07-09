@@ -31,8 +31,9 @@ public class SongsWebService {
 	}
 	//GET http://localhost:8080/songsRX/rest/songs
 	//Returns all songs
-	//@Permisson
+	
 	@GET
+	@Permisson
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Collection<Song> getAllSongs() {
 //		return SongBook.getInstance().getAllSongs();
@@ -45,7 +46,7 @@ public class SongsWebService {
 	//Returns: 200 and song with id 1
 	//Returns: 404 on provided id not found
 	@GET
-	//@Permisson
+	@Permisson
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Response getSong(@PathParam("id") Integer id) {

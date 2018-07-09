@@ -6,6 +6,7 @@
         
 
         <class>de.htwBerlin.ai.kbe.bean.Song</class>
+        <class>de.htwBerlin.ai.kbe.bean.User</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>

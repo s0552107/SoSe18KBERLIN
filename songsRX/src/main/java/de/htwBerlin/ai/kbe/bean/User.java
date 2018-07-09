@@ -10,18 +10,19 @@ import javax.persistence.Id;
 
 
 @XmlRootElement(name = "user")
-//@Entity
-//@Table(name="Users")
+@Entity
+@Table(name="Users")
 public class User {
 	
-//	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
-//    // bedeutet, dass der PK automatisch durch die DB vergeben wird
-//	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
+    // bedeutet, dass der PK automatisch durch die DB vergeben wird
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	
 		private Integer id;
 		private String userId;
 		private String lastName;
 		private String firstName;
+		
 		
 		
 
@@ -32,14 +33,14 @@ public class User {
 		// Example of a builder:
 		public static class Builder {
 			// required parameter
-			private Integer id;
+
 			private String userId;
 			private String lastName;
 			private String firstName;
 			
 
-			public Builder(Integer id, String userId) {
-				this.id = id;
+			public Builder( String userId) {
+
 				this.userId = userId;
 			}
 
@@ -60,7 +61,7 @@ public class User {
 		}
 
 		private User(Builder builder) {
-			this.id = builder.id;
+
 			this.userId = builder.userId;
 			this.lastName = builder.lastName;
 			this.firstName = builder.firstName;

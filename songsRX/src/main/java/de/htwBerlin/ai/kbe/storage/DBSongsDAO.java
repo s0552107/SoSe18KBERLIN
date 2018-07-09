@@ -95,12 +95,15 @@ public class DBSongsDAO implements SongsDAO {
     @Override
     public void initSongs() { 	
     	try {
-//    		Collection<Song> songs = findAllSongs();
-//        	for (Song s : songs) {
-//        		deleteSong(s.getId());
-//        	}
+    		Collection<Song> songs = findAllSongs();
+        	for (Song s : songs) {
+        		deleteSong(s.getId());
+        	}
+        	//TODO
+        	//ALTER SEQUENCE song_id_seq RESTART WITH 1;
     		// Leon /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
     		// Emil /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+        	// /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
 			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
 			for (Song s : initSongs) {
 				Song song = new Song.Builder(s.getTitle())

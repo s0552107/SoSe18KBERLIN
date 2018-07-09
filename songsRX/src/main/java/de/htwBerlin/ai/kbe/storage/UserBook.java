@@ -9,6 +9,7 @@ import java.util.Random;
 import java.math.BigInteger;
 
 import de.htwBerlin.ai.kbe.bean.User;
+import de.htwBerlin.ai.kbe.storage.UsersDAO;
 
 public class UserBook {
 	private static Map<String,User> storage;
@@ -54,23 +55,6 @@ public class UserBook {
 		
 	}
 
-	public String createToken(String userId){
-	    if (storage.containsKey(userId))
-        {
-            Random random = new SecureRandom();
-            String token = new BigInteger(130, random).toString(32);
-            // create new Token for every request
-            if(!m_token.containsKey(storage.get(userId).getId()))
-                m_token.put(storage.get(userId).getId(), token);
-            else
-                m_token.replace(storage.get(userId).getId(), token);
-
-            return token;
-        }
-        else
-            return "WrongToken";
-    }
-
     public boolean findToken(String token)
     {
         if (m_token.containsValue(token))
@@ -92,7 +76,22 @@ public class UserBook {
 		return storage.values();
 	}
 	
-	
+	public String createToken(String userId, User user){
+	    if (user != null)
+        {
+            Random random = new SecureRandom();
+            String token = new BigInteger(130, random).toString(32);
+            // create new Token for every request
+            if(!m_token.containsKey(user.getId()))
+                m_token.put(user.getId(), token);
+            else
+                m_token.replace(user.getId(), token);
+
+            return token;
+        }
+        else
+            return "WrongToken";
+    }
 	
 	// returns true (success), when user exists in map and was updated
 	// returns false, when user does not exist in map
