@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<songListe>
+	<id>1</id>
+	<owner>2</owner>	
+	<privateFlag>true</privateFlag>
+	<songlist>1 3 5 7 9</songlist>
+</songListe>
