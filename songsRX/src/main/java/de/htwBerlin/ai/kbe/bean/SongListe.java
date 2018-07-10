@@ -19,7 +19,7 @@ public class SongListe {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private User owner;
+	private Integer owner;
 	private boolean privateFlag;
 	
 	@OneToMany(mappedBy="songListe",
@@ -36,12 +36,12 @@ public class SongListe {
 	// Example of a builder:
 	public static class Builder {
 		// required parameter2018
-		private Integer id;
-		private User owner;
+		
+		private Integer owner;
 		private boolean privateFlag;
 		private List<Song> songList;
 
-		public Builder( User owner) {
+		public Builder( Integer owner) {
 			
 			this.owner = owner;
 		}
@@ -76,11 +76,11 @@ public class SongListe {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public User getOwner() {
+	public Integer getOwner() {
 		return owner;
 	}
 
-	public void setOwner(User owner) {
+	public void setOwner(Integer owner) {
 		this.owner = owner;
 	}
 
