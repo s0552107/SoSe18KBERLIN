@@ -80,7 +80,7 @@ public class DBUsersDAO implements UsersDAO {
         try {
             user = em.find(User.class, id);
             if (user != null) {
-                System.out.println("Deleting: " + user.getId() + " with Title: " + user.getUserId());
+                System.out.println("Deleting: " + user.getId() + " with User-ID: " + user.getUserId());
                 transaction.begin();
                 em.remove(user);
                 transaction.commit();
