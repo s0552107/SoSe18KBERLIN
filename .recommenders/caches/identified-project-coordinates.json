@@ -1,1 +1,1 @@
-[[{"location":"/home/s0552107/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar","type":"JAR","hints":{}},"org.hibernate.javax:org.hibernate.javax.persistence.hibernate-jpa-2.1-api:1.0.0"]]
+[[{"location":"/usr/lib/jvm/java-8-oracle","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"],[{"location":"/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX","type":"PROJECT","hints":{"PROJECT_NAME":"songsRX"}},"de.htwBerlin.ai.kbe:songsRX:0.0.1"]]

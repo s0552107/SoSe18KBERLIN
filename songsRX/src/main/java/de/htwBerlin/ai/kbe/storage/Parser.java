@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.htwBerlin.ai.kbe.bean.Song;
+import de.htwBerlin.ai.kbe.bean.SongListe;
 import de.htwBerlin.ai.kbe.bean.User;
 
 
@@ -59,6 +60,15 @@ public class Parser {
 		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
 			return (List<User>) objectMapper.readValue(is, new TypeReference<List<User>>(){});
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	 public static List<SongListe> readJSONToSongListen(String filename) throws FileNotFoundException, IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		try (InputStream is = new BufferedInputStream(new FileInputStream(filename))) {
+			return (List<SongListe>) objectMapper.readValue(is, new TypeReference<List<SongListe>>(){});
 		}
 	}
 

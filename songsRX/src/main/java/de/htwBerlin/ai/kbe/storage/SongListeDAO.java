@@ -33,6 +33,8 @@ public interface SongListeDAO {
      * @param id
      */
     public void deleteSongListe(Integer id);
+    
+    public void initSongListen();
 	
 	
 }

@@ -12,15 +12,14 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 
-<<<<<<< HEAD
-=======
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
->>>>>>> 350e0a9c203da12c05dfe53a254bdffcb2acb9f6
+
 
 import de.htwBerlin.ai.kbe.bean.Song;
 
@@ -162,13 +161,13 @@ public class DBSongsDAO implements SongsDAO {
     		// Leon /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
     		// Emil /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
         	// /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
-<<<<<<< HEAD
+
 //        	EntityManager em = emf.createEntityManager();
 //        	em.createQuery("ALTER SEQUENCE song_id_seq RESTART WITH 1;");
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
-=======
+			//List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
+
 			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
->>>>>>> 350e0a9c203da12c05dfe53a254bdffcb2acb9f6
+
 			for (Song s : initSongs) {
 				Song song = new Song.Builder(s.getTitle())
 						.artist(s.getArtist())

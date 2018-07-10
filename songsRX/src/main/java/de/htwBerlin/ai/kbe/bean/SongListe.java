@@ -12,19 +12,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@XmlRootElement(name = "song")
+@XmlRootElement(name = "songListe")
 @Entity
 @Table(name = "Songliste")
 public class SongListe {
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private User owner;
 	private boolean privateFlag;
 	
-	@OneToMany(mappedBy="songliste",
+	@OneToMany(mappedBy="songListe",
 			cascade=CascadeType.ALL,
 			orphanRemoval=true,
 			fetch = FetchType.EAGER)
-	private List<Song> songlist;
+	private List<Song> songList;
 	
 
 	// needed for JAXB
@@ -37,20 +39,20 @@ public class SongListe {
 		private Integer id;
 		private User owner;
 		private boolean privateFlag;
-		private List<Song> songlist;
+		private List<Song> songList;
 
 		public Builder( User owner) {
 			
 			this.owner = owner;
 		}
 
-		public Builder artist(boolean val) {
+		public Builder privateFlag(boolean val) {
 			privateFlag = val;
 			return this;
 		}
 
-		public Builder album(List<Song> val) {
-			songlist = val;
+		public Builder songList(List<Song> val) {
+			songList = val;
 			return this;
 		}
 
@@ -62,7 +64,7 @@ public class SongListe {
 	private SongListe(Builder builder) {
 		this.owner = builder.owner;
 		this.privateFlag = builder.privateFlag;
-		this.songlist = builder.songlist;
+		this.songList = builder.songList;
 
 	}
 	
@@ -90,12 +92,12 @@ public class SongListe {
 		this.privateFlag = privat;
 	}
 
-	public List<Song> getSonglist() {
-		return songlist;
+	public List<Song> getSongList() {
+		return songList;
 	}
 
-	public void setSonglist(List<Song> songlist) {
-		this.songlist = songlist;
+	public void setSonglist(List<Song> songList) {
+		this.songList = songList;
 	}
 
 

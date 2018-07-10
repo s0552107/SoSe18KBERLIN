@@ -8,9 +8,11 @@ import javax.persistence.Persistence;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 import de.htwBerlin.ai.kbe.storage.SongsDAO;
+import de.htwBerlin.ai.kbe.storage.DBSongListeDAO;
 import de.htwBerlin.ai.kbe.storage.DBSongsDAO;
 import de.htwBerlin.ai.kbe.storage.UsersDAO;
 import de.htwBerlin.ai.kbe.storage.DBUsersDAO;
+import de.htwBerlin.ai.kbe.storage.SongListeDAO;
 
 public class DependencyBinder extends AbstractBinder {
     @Override
@@ -24,6 +26,10 @@ public class DependencyBinder extends AbstractBinder {
         
         bind(DBUsersDAO.class)
         .to(UsersDAO.class)
+        .in(Singleton.class);
+        
+        bind(DBSongListeDAO.class)
+        .to(SongListeDAO.class)
         .in(Singleton.class);
     }
     

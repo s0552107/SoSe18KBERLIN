@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.inject.Singleton;
 
+import de.htwBerlin.ai.kbe.bean.Song;
 import de.htwBerlin.ai.kbe.bean.SongListe;
 
 @Singleton
@@ -93,6 +94,35 @@ public class DBSongListeDAO implements SongListeDAO {
         } finally {
             em.close();
         }
+    }
+    
+    
+    @Override
+    public void initSongListen() { 	
+        	//TODO
+        	//ALTER SEQUENCE song_id_seq RESTART WITH 1;
+    		// Leon /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+    		// Emil /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+        	// /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
+
+// 			
+    		try {
+				List<SongListe> initSongListen = Parser.readJSONToSongListen("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songListe.json");
+	
+				for (SongListe sl : initSongListen) {
+					SongListe songListe = new SongListe.Builder(sl.getOwner())
+							
+							.privateFlag(sl.getPrivatFlag())
+							.songList(sl.getSongList()).build();
+							
+					saveSongListe(songListe);
+				}
+    		}
+    		catch(Exception e)
+    		{
+    			;
+    		}
+		
     }
 
 }
