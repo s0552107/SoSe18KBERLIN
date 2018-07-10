@@ -35,6 +35,8 @@ public interface SongsDAO {
      */
     public void deleteSong(Integer id);
     
+    public boolean updateSong(Integer id, Song song);
+    
     /**
      * init songs
      */

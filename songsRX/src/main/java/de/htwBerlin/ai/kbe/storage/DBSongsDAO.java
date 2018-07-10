@@ -11,6 +11,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+
 import de.htwBerlin.ai.kbe.bean.Song;
 
 @Singleton
@@ -93,6 +101,52 @@ public class DBSongsDAO implements SongsDAO {
     }
     
     @Override
+    public boolean updateSong(Integer id, Song song) {
+    	EntityManager em = emf.createEntityManager();
+    	
+            String SQL = "UPDATE song "
+                    + "SET title = ? "
+                    + "SET album = ? "
+                    + "SET artist = ? "
+                    + "SET released = ? "
+                    + "WHERE actor_id = ?";
+     
+            int affectedrows = 0;
+     
+            try {
+                  em.createQuery("UPDATE song"
+                  		+ "SET title = " + song.getTitle()
+                  		+ "SET album = " + song.getAlbum()
+                  		+ "WHERE id = " + id); 
+                  
+                  return true;
+              
+     
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                return false;
+            }
+            
+        
+    	
+    	
+    	
+    	
+    	
+//    	Song tmp = findSongById(id);
+//    	if(tmp != null && song.getId() == id && song != null)
+//    	{
+//    		deleteSong(id);
+//    		//song.setId(id);
+//    		saveSong(song);
+//    		return true;
+//    	}
+//    	else
+//    		return false;
+    }
+    
+    
+    @Override
     public void initSongs() { 	
     	try {
     		Collection<Song> songs = findAllSongs();
@@ -104,7 +158,7 @@ public class DBSongsDAO implements SongsDAO {
     		// Leon /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
     		// Emil /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
         	// /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
-			List<Song> initSongs = Parser.readJSONToSongs("/home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
+			List<Song> initSongs = Parser.readJSONToSongs("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json");
 			for (Song s : initSongs) {
 				Song song = new Song.Builder(s.getTitle())
 						.artist(s.getArtist())

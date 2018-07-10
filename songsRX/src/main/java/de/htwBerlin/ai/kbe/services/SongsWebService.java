@@ -50,7 +50,8 @@ public class SongsWebService {
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public Response getSong(@PathParam("id") Integer id) {
-		Song song = SongBook.getInstance().getSong(id);
+		
+		Song song = songsDao.findSongById(id);
 		if (song != null) {
 			System.out.println("getSong: Returning Song for id " + id);
 			return Response.ok(song).build();
@@ -75,7 +76,7 @@ public class SongsWebService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response createSong(Song song) {
 		System.out.println("createSong: Received song: " + song.toString());
-        int newId = SongBook.getInstance().addSong(song);
+        int newId = songsDao.saveSong(song);
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
         uriBuilder.path(Integer.toString(newId));
         return Response.created(uriBuilder.build()).build();
@@ -91,7 +92,7 @@ public class SongsWebService {
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("/{id}")
     public Response updateSong(@PathParam("id") Integer id, Song song) {
-		boolean bool = SongBook.getInstance().updateSong(id, song);
+		boolean bool = songsDao.updateSong(id, song);
 		if (bool)
 			return Response.status(Response.Status.NO_CONTENT).entity("Song" + id + " succesfully updated").build();
 		else
@@ -106,9 +107,16 @@ public class SongsWebService {
 	@Path("/{id}")
 	public Response delete(@PathParam("id") Integer id) {
 		boolean bool = SongBook.getInstance().deleteSong(id);
-		if(bool)
+		try {
+			songsDao.deleteSong(id);
 			return Response.status(Response.Status.NO_CONTENT).entity("Song" + id + " deleted").build();
-		else
+			
+				
+		}
+		catch(Exception e)
+		{
 			return Response.status(Response.Status.NOT_FOUND).entity("Song " + id + " doesn’t exist").build();
+		}
+			
 	}
 }
