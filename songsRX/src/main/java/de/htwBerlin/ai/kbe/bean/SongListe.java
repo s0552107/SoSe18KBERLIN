@@ -2,12 +2,28 @@ package de.htwBerlin.ai.kbe.bean;
 
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @XmlRootElement(name = "song")
+@Entity
+@Table(name = "Songliste")
 public class SongListe {
 	private Integer id;
 	private User owner;
 	private boolean privateFlag;
+	
+	@OneToMany(mappedBy="songliste",
+			cascade=CascadeType.ALL,
+			orphanRemoval=true,
+			fetch = FetchType.EAGER)
 	private List<Song> songlist;
 	
 
@@ -23,8 +39,8 @@ public class SongListe {
 		private boolean privateFlag;
 		private List<Song> songlist;
 
-		public Builder(Integer id, User owner) {
-			this.id = id;
+		public Builder( User owner) {
+			
 			this.owner = owner;
 		}
 
@@ -44,7 +60,6 @@ public class SongListe {
 	}
 
 	private SongListe(Builder builder) {
-		this.id = builder.id;
 		this.owner = builder.owner;
 		this.privateFlag = builder.privateFlag;
 		this.songlist = builder.songlist;
