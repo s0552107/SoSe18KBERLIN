@@ -2,6 +2,9 @@ package de.htwBerlin.ai.kbe.bean;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Set;
+import java.util.HashSet;
+
+import de.htwBerlin.ai.kbe.bean.SongListe;
 
 @XmlRootElement(name = "song")
 @Entity 
@@ -16,11 +19,18 @@ public class Song {
 	private Integer released;
 
 
+	//private Set<SongListe> songListeSet;
+
+
+
+
+
+
+
 	
 //	@ManyToOne
 //	@JoinColumn(name = "sid")
-//	private SongListe songListe;
-	
+//	private Set <SongListe> songListe;
 
 	// needed for JAXB
 	public Song() {
@@ -51,6 +61,7 @@ public class Song {
 		private String artist;
 		private String album;
 		private Integer released;
+		private Set<SongListe> songListeSet;
 		
 		
 

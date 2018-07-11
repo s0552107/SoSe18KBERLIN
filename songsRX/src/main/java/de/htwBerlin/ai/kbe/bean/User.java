@@ -19,10 +19,10 @@ public class User {
 		private String userId;
 		private String lastName;
 		private String firstName;
+		
 
-		@OneToMany(mappedBy="owner",
-				cascade = CascadeType.ALL, orphanRemoval=true)
-		Set<SongListe> songListen;
+
+
 		
 
 		// needed for JAXB
@@ -95,7 +95,7 @@ public class User {
 
 
 
-
+/**
 	public Set<SongListe> getSongListen() {
 		if(songListen == null) {
 			songListen = new HashSet<>();
@@ -117,7 +117,7 @@ public class User {
 		}
 		songListe.setOwner(this);
 		this.songListen.add(songListe);
-	}
+	}**/
 
 
 

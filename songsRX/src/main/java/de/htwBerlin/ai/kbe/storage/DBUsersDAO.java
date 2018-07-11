@@ -56,10 +56,10 @@ public class DBUsersDAO implements UsersDAO {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
-            // MUST set the user in every address
-            for (SongListe sl:user.getSongListen()) {
-                sl.setOwner(user);
-            }
+        //    // MUST set the user in every address
+        //    for (SongListe sl:user.getSongListen()) {
+         //       sl.setOwner(user);
+         //   }
             em.persist(user);
             transaction.commit();
             return user.getId();
@@ -73,6 +73,7 @@ public class DBUsersDAO implements UsersDAO {
         }
     }
 
+    /**
     @Override
     public Integer updateUserSongListe(SongListe songListe,  User user) throws PersistenceException {
         EntityManager em = emf.createEntityManager();
@@ -95,7 +96,7 @@ public class DBUsersDAO implements UsersDAO {
         } finally {
             em.close();
         }
-    }
+    }**/
 
     @Override
     public void deleteUser(Integer id) throws PersistenceException {

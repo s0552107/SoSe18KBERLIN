@@ -57,9 +57,9 @@ public class DBSongListeDAO implements SongListeDAO {
         try {
             transaction.begin();
             // MUST set the song in every address
-//            for (Address a:song.getAddressSet()) {
-//                a.setSong(song);
-//            }
+            //for (Song a:songListe.getSongList()) {
+            //    a.set(song);
+            //}
             em.persist(songListe);
             transaction.commit();
             return songListe.getId();

@@ -32,7 +32,7 @@ public interface UsersDAO {
      */
     public Integer saveUser(User user);
 
-    public Integer updateUserSongListe(SongListe songListe, User user);
+   // public Integer updateUserSongListe(SongListe songListe, User user);
     
     /**
      * Deletes the contact for the provided id

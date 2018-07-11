@@ -68,10 +68,10 @@ public class SongListenWebService {
 
 			//String token = request.getHeader(AUTHORIZATION);
 			//String currentUser = UserBook.getInstance().findUserByToken(token);
-			User user = usersDao.findUserByUserId(userId);
+			//User user = usersDao.findUserByUserId(userId);
 
 			//if(currentUser == userId) {
-				usersDao.updateUserSongListe(songListe, user);
+				//songListeDao.saveSongListe(songListe);
 				System.out.println("createSongListe: Received songListe: " + songListe.toString());
 				int newId = songListeDao.saveSongListe(songListe);
 				UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();

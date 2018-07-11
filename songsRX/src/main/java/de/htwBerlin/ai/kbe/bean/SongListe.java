@@ -2,6 +2,7 @@ package de.htwBerlin.ai.kbe.bean;
 
 import org.hibernate.annotations.Columns;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
@@ -14,9 +15,7 @@ public class SongListe {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@ManyToOne
-	@JoinColumn(name = "owner")
-	private User owner;
+	private Integer owner;
 	private boolean privateFlag;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
@@ -24,6 +23,8 @@ public class SongListe {
 		joinColumns = {@JoinColumn( name ="slid", referencedColumnName = "id")},
 		inverseJoinColumns = {@JoinColumn( name="sid", referencedColumnName = "id")})
 	private Set<Song> songList;
+
+
 	
 
 	// needed for JAXB
@@ -34,11 +35,11 @@ public class SongListe {
 	public static class Builder {
 		// required parameter2018
 
-		private User owner;
+		private Integer owner;
 		private boolean privateFlag;
 		private Set<Song> songList;
 
-		public Builder(User owner) {
+		public Builder(Integer owner) {
 			
 			this.owner = owner;
 		}
@@ -74,17 +75,15 @@ public class SongListe {
 		this.id = id;
 	}
 
-	//public User getOwner() {
-	//	return owner;
-	//}
+	public Integer getOwner() {
+		return owner;
+	}
 
 
 
 
-	public void setOwner(User owner) {
-		for (SongListe sl:owner.getSongListen()) {
-			sl.setOwner(owner);
-		}
+	public void setOwner(Integer owner) {
+
 		this.owner = owner;
 	}
 
@@ -102,7 +101,21 @@ public class SongListe {
 
 	public void setSonglist(Set<Song> songList) {
 		this.songList = songList;
+		//if(songList != null) {
+		//	this.songList.forEach(s->s.);
+		//}
 
+
+	}
+
+
+
+	public void addSongList(Song song) {
+		if(songList == null) {
+			songList = new HashSet<>();
+		}
+		//songList.setContact(this);
+		this.songList.add(song);
 	}
 
 
