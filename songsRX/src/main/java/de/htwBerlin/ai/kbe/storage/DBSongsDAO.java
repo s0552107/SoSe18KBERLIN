@@ -105,37 +105,6 @@ public class DBSongsDAO implements SongsDAO {
     //TODO
     @Override
     public boolean updateSong(Integer id, Song song) {
-    	EntityManager em = emf.createEntityManager();
-    	
-            String SQL = "UPDATE song "
-                    + "SET title = ? "
-                    + "SET album = ? "
-                    + "SET artist = ? "
-                    + "SET released = ? "
-                    + "WHERE actor_id = ?";
-     
-            int affectedrows = 0;
-     
-            try {
-                  em.createQuery("UPDATE song"
-                  		+ "SET title = " + song.getTitle()
-                  		+ "SET album = " + song.getAlbum()
-                  		+ "WHERE id = " + id); 
-                  
-                  return true;
-              
-     
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-                return false;
-            }
-            
-        
-    	
-    	
-    	
-    	
-    	
 //    	Song tmp = findSongById(id);
 //    	if(tmp != null && song.getId() == id && song != null)
 //    	{
@@ -146,7 +115,31 @@ public class DBSongsDAO implements SongsDAO {
 //    	}
 //    	else
 //    		return false;
-    }
+    	EntityManager em = emf.createEntityManager();
+    	EntityTransaction transaction = em.getTransaction();
+    	try {
+    		song.setId(id);
+            transaction.begin();
+            em.merge(song);
+            transaction.commit();
+            return true;
+        }
+    	catch (Exception e) {
+            throw new PersistenceException("Could not update song: " + song.getId());
+        }
+    	finally {
+            em.close();
+        }
+     }
+            
+        
+    	
+    	
+    	
+    	
+    	
+
+    
     
     
     @Override
