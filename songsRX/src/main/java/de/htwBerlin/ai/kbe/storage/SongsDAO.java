@@ -3,6 +3,7 @@ package de.htwBerlin.ai.kbe.storage;
 import java.util.Collection;
 
 import de.htwBerlin.ai.kbe.bean.Song;
+import de.htwBerlin.ai.kbe.bean.SongListe;
 
 public interface SongsDAO {
 
@@ -36,6 +37,8 @@ public interface SongsDAO {
     public void deleteSong(Integer id);
     
     public boolean updateSong(Integer id, Song song);
+    
+   
     
     /**
      * init songs

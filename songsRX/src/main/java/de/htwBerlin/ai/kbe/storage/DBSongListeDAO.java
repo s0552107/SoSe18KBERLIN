@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 
 import java.util.List;
-
+import java.util.Set;
 
 import javax.inject.Singleton;
 
@@ -71,6 +71,31 @@ public class DBSongListeDAO implements SongListeDAO {
         } finally {
             em.close();
         }
+    }
+    
+    @Override
+    public Integer addSongListe (SongListe songListe)
+    {
+    	EntityManager em = emf.createEntityManager();
+    	try {
+    		TypedQuery<Song> query = em.createQuery("SELECT s FROM Song s", Song.class);
+    		List<Song> songList = query.getResultList();
+//    		for (Song s: songListe)
+    		em.getTransaction().begin();
+    		em.persist(songListe);
+    		em.getTransaction().commit();
+    		return songListe.getId();
+    		
+    	}
+    	catch (Exception ex ) {
+    		throw new PersistenceException("Could not persist entity: " + ex.toString());
+    		
+    	}
+    	finally {
+    		em.close();
+    	}
+    	 
+    	
     }
 
     @Override

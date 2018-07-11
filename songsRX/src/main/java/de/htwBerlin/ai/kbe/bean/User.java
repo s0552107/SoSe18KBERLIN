@@ -14,7 +14,6 @@ public class User {
 	@Id // kennzeichnet das Identitätsattribut entspricht dem PK (primary key)
     // bedeutet, dass der PK automatisch durch die DB vergeben wird
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	
 		private Integer id;
 		private String userId;
 		private String lastName;

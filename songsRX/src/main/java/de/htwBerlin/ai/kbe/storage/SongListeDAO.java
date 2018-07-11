@@ -34,6 +34,8 @@ public interface SongListeDAO {
      */
     public void deleteSongListe(Integer id);
     
+    public Integer addSongListe (SongListe songListe);
+    
     public void initSongListen();
 	
 	

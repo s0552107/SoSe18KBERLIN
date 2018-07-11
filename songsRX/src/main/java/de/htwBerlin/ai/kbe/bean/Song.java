@@ -17,6 +17,7 @@ public class Song {
 	private String artist;
 	private String album;
 	private Integer released;
+	//private Set<SongListe> songListeSet;
 
 
 	//private Set<SongListe> songListeSet;

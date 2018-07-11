@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -50,6 +51,9 @@ public class SongListenWebService {
 			
 	}
 	
+	@HeaderParam("Authorization")
+	private String token;
+	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public Collection <SongListe> getToken(@PathParam("userId") String userId) {
@@ -59,27 +63,27 @@ public class SongListenWebService {
 	
 	 @Context UriInfo uriInfo;
 		@POST
-	    //@Permisson
+	    @Permisson
 		@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 		@Produces(MediaType.TEXT_PLAIN)
 		public Response createSongListe(@PathParam("userId") String userId, SongListe songListe) {
 
-			//HttpServletRequest request
+			String currentUser = UserBook.getInstance().findUserByToken(token);
+			User user = usersDao.findUserByUserId(userId);
 
-			//String token = request.getHeader(AUTHORIZATION);
-			//String currentUser = UserBook.getInstance().findUserByToken(token);
-			//User user = usersDao.findUserByUserId(userId);
-
-			//if(currentUser == userId) {
+			if(currentUser == userId) {
+				songListe.setId(null);
+				songListe.setOwner(user);
+				
 				//songListeDao.saveSongListe(songListe);
 				System.out.println("createSongListe: Received songListe: " + songListe.toString());
-				int newId = songListeDao.saveSongListe(songListe);
+				int newId = songListeDao.addSongListe(songListe);
 				UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
 				uriBuilder.path(Integer.toString(newId));
 				return Response.created(uriBuilder.build()).build();
-			//}
-			//else
-			//	return Response.status(Response.Status.NOT_FOUND).entity("User with UserId " + currentUser + "has no Permisson for User" + userId).build();
+			}
+			else
+				return Response.status(Response.Status.NOT_FOUND).entity("User with UserId " + currentUser + "has no Permisson for User" + userId).build();
 		}
 	
 	

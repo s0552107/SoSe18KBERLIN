@@ -16,8 +16,8 @@
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" 
             		  value="jdbc:postgresql://db.f4.htw-berlin.de:5432/_s0552107__songs"/>
-            <property name="javax.persistence.jdbc.user" value="s0552107"/>
-            <property name="javax.persistence.jdbc.password" value="W84youbro4me"/>
+            <property name="javax.persistence.jdbc.user" value="s0549218"/>
+            <property name="javax.persistence.jdbc.password" value="25q(&amp;11EM"/>
 
             <!--Hibernate properties-->
             <property name="hibernate.show_sql" value="true"/>

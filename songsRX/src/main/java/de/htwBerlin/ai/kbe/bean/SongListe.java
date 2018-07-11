@@ -15,14 +15,14 @@ public class SongListe {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer owner;
+	private User owner;
 	private boolean privateFlag;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name ="sinsl",
-		joinColumns = {@JoinColumn( name ="slid", referencedColumnName = "id")},
-		inverseJoinColumns = {@JoinColumn( name="sid", referencedColumnName = "id")})
-	private Set<Song> songList;
+	//@ManyToMany(cascade = CascadeType.PERSIST)
+	//@JoinTable(name ="sinsl",
+	//	joinColumns = {@JoinColumn( name ="slid", referencedColumnName = "id")},
+	//	inverseJoinColumns = {@JoinColumn( name="sid", referencedColumnName = "id")})
+	private List<Song> songList;
 
 
 	
@@ -35,11 +35,11 @@ public class SongListe {
 	public static class Builder {
 		// required parameter2018
 
-		private Integer owner;
+		private User owner;
 		private boolean privateFlag;
-		private Set<Song> songList;
+		private List<Song> songList;
 
-		public Builder(Integer owner) {
+		public Builder(User owner) {
 			
 			this.owner = owner;
 		}
@@ -49,7 +49,7 @@ public class SongListe {
 			return this;
 		}
 
-		public Builder songList(Set<Song> val) {
+		public Builder songList(List<Song> val) {
 			songList = val;
 			return this;
 		}
@@ -75,14 +75,15 @@ public class SongListe {
 		this.id = id;
 	}
 
-	public Integer getOwner() {
+	public User getOwner() {
 		return owner;
 	}
 
 
 
-
-	public void setOwner(Integer owner) {
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "userid") //oder id
+	public void setOwner(User owner) {
 
 		this.owner = owner;
 	}
@@ -94,12 +95,14 @@ public class SongListe {
 	public void setPrivateFlag(boolean privat) {
 		this.privateFlag = privat;
 	}
-
-	public Set<Song> getSongList() {
+	
+	
+	@ManyToMany (fetch = FetchType.EAGER)
+	public List<Song> getSongList() {
 		return songList;
 	}
 
-	public void setSonglist(Set<Song> songList) {
+	public void setSonglist(List<Song> songList) {
 		this.songList = songList;
 		//if(songList != null) {
 		//	this.songList.forEach(s->s.);
@@ -110,14 +113,7 @@ public class SongListe {
 
 
 
-	public void addSongList(Song song) {
-		if(songList == null) {
-			songList = new HashSet<>();
-		}
-		//songList.setContact(this);
-		this.songList.add(song);
-	}
-
+	
 
 
 	
