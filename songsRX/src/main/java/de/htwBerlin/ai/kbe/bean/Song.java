@@ -1,13 +1,7 @@
 package de.htwBerlin.ai.kbe.bean;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import java.util.Set;
 
 @XmlRootElement(name = "song")
 @Entity 
@@ -20,10 +14,12 @@ public class Song {
 	private String artist;
 	private String album;
 	private Integer released;
+
+
 	
-	@ManyToOne
-	@JoinColumn(name = "sid")
-	private SongListe songListe;
+//	@ManyToOne
+//	@JoinColumn(name = "sid")
+//	private SongListe songListe;
 	
 
 	// needed for JAXB
@@ -132,6 +128,8 @@ public class Song {
 	public void setReleased(Integer released) {
 		this.released = released;
 	}
+
+
 
 
 

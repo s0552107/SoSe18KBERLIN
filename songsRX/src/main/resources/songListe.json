@@ -1,6 +1,21 @@
-[{
-  "id" : 2,
-  "owner" : 1,
+{
+
   "privateFlag" : false,
-  "songlist" : [2,4,6,8,10]
-}]
+  "songlist" : {
+    "song": [
+      {
+        "id" : 10,
+        "title" : "7 Years",
+        "artist" : "Lukas Graham",
+        "album" : "Lukas Graham (Blue Album)",
+        "released" : 2015
+      }, {
+        "id" : 9,
+        "title" : "Private Show",
+        "artist" : "Britney Spears",
+        "album" : "Glory",
+        "released" : 2016
+      }
+    ]
+  }
+}

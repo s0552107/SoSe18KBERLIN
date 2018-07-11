@@ -1,12 +1,9 @@
 package de.htwBerlin.ai.kbe.bean;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @XmlRootElement(name = "user")
@@ -22,8 +19,10 @@ public class User {
 		private String userId;
 		private String lastName;
 		private String firstName;
-		
-		
+
+		@OneToMany(mappedBy="owner",
+				cascade = CascadeType.ALL, orphanRemoval=true)
+		Set<SongListe> songListen;
 		
 
 		// needed for JAXB
@@ -93,22 +92,42 @@ public class User {
 			this.lastName = lastName;
 		}
 
-		public String getAlbum() {
-			return firstName;
+
+
+
+
+	public Set<SongListe> getSongListen() {
+		if(songListen == null) {
+			songListen = new HashSet<>();
 		}
+		return songListen;
+	}
 
-		public void setAlbum(String firstName) {
-			this.firstName = firstName;
+	public void setSongListen(Set<SongListe> songListe) {
+		this.songListen = songListe;
+		// Works for JSON, but not for XML
+		if(songListe != null) {
+			this.songListen.forEach(a-> a.setOwner(this));
 		}
+	}
 
-	
+	public void addSongListen(SongListe songListe) {
+		if(songListen == null) {
+			songListen = new HashSet<>();
+		}
+		songListe.setOwner(this);
+		this.songListen.add(songListe);
+	}
 
 
 
 
-		
 
-		@Override
+
+
+
+
+	@Override
 		public String toString() {
 			return "User [id=" + id + ", userId=" + userId + ", lastName=" + lastName + ", mobile=" + firstName + "]";
 		}

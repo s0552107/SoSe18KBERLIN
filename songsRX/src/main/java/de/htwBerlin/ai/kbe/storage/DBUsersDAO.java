@@ -13,6 +13,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 
+import de.htwBerlin.ai.kbe.bean.SongListe;
 import de.htwBerlin.ai.kbe.bean.User;
 
 @Singleton
@@ -56,9 +57,9 @@ public class DBUsersDAO implements UsersDAO {
         try {
             transaction.begin();
             // MUST set the user in every address
-//            for (Address a:user.getAddressSet()) {
-//                a.setUser(user);
-//            }
+            for (SongListe sl:user.getSongListen()) {
+                sl.setOwner(user);
+            }
             em.persist(user);
             transaction.commit();
             return user.getId();
@@ -67,6 +68,30 @@ public class DBUsersDAO implements UsersDAO {
             System.out.println("Error adding user: " + e.getMessage());
             transaction.rollback();
             throw new PersistenceException("Could not persist entity: " + e.toString());
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public Integer updateUserSongListe(SongListe songListe,  User user) throws PersistenceException {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            // MUST set the user in every address
+            //for (SongListe sl : user.getSongListen()) {
+            //    sl.setOwner(user);
+            //}
+            songListe.setOwner(user);
+            user.addSongListen(songListe);
+            transaction.commit();
+            return songListe.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error adding user: " + e.getMessage());
+            transaction.rollback();
+            throw new PersistenceException("Could not update entity: " + e.toString());
         } finally {
             em.close();
         }

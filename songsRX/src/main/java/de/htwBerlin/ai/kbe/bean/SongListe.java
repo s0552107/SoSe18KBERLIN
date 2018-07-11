@@ -1,32 +1,29 @@
 package de.htwBerlin.ai.kbe.bean;
 
+import org.hibernate.annotations.Columns;
+
 import java.util.List;
+import java.util.Set;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Table;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @XmlRootElement(name = "songListe")
 @Entity
-@Table(name = "Songliste")
+@Table(name = "SongListe")
 public class SongListe {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer owner;
+	@ManyToOne
+	@JoinColumn(name = "owner")
+	private User owner;
 	private boolean privateFlag;
 	
-	@OneToMany(mappedBy="songListe",
-			cascade=CascadeType.ALL,
-			orphanRemoval=true,
-			fetch = FetchType.EAGER)
-	private List<Song> songList;
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name ="sinsl",
+		joinColumns = {@JoinColumn( name ="slid", referencedColumnName = "id")},
+		inverseJoinColumns = {@JoinColumn( name="sid", referencedColumnName = "id")})
+	private Set<Song> songList;
 	
 
 	// needed for JAXB
@@ -36,12 +33,12 @@ public class SongListe {
 	// Example of a builder:
 	public static class Builder {
 		// required parameter2018
-		
-		private Integer owner;
-		private boolean privateFlag;
-		private List<Song> songList;
 
-		public Builder( Integer owner) {
+		private User owner;
+		private boolean privateFlag;
+		private Set<Song> songList;
+
+		public Builder(User owner) {
 			
 			this.owner = owner;
 		}
@@ -51,7 +48,7 @@ public class SongListe {
 			return this;
 		}
 
-		public Builder songList(List<Song> val) {
+		public Builder songList(Set<Song> val) {
 			songList = val;
 			return this;
 		}
@@ -76,28 +73,36 @@ public class SongListe {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getOwner() {
-		return owner;
-	}
 
-	public void setOwner(Integer owner) {
+	//public User getOwner() {
+	//	return owner;
+	//}
+
+
+
+
+	public void setOwner(User owner) {
+		for (SongListe sl:owner.getSongListen()) {
+			sl.setOwner(owner);
+		}
 		this.owner = owner;
 	}
 
-	public boolean getPrivatFlag() {
+	public boolean getPrivateFlag() {
 		return privateFlag;
 	}
 
-	public void setPrivatFlag(boolean privat) {
+	public void setPrivateFlag(boolean privat) {
 		this.privateFlag = privat;
 	}
 
-	public List<Song> getSongList() {
+	public Set<Song> getSongList() {
 		return songList;
 	}
 
-	public void setSonglist(List<Song> songList) {
+	public void setSonglist(Set<Song> songList) {
 		this.songList = songList;
+
 	}
 
 

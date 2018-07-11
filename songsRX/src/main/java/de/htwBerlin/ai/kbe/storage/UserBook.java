@@ -13,12 +13,12 @@ import de.htwBerlin.ai.kbe.storage.UsersDAO;
 
 public class UserBook {
 	private static Map<String,User> storage;
-	private static Map<Integer, String> m_token;
+	private static Map<String, String> m_token;
 	private static UserBook instance = null;
 	
 	private UserBook() {
 		storage = new HashMap<String,User>();
-		m_token = new HashMap<Integer, String>();
+		m_token = new HashMap<String, String>();
 		initSomeUsers();
 	}
 	
@@ -57,7 +57,7 @@ public class UserBook {
 
     public boolean findToken(String token)
     {
-        if (m_token.containsValue(token))
+        if (m_token.containsKey(token))
         {
             return true;
         }
@@ -65,8 +65,13 @@ public class UserBook {
             return false;
     }
 
+    public String findUserByToken(String token){
+		String userId = m_token.get(token);
+		return userId;
+	}
+
     public Boolean findUser(String userId) {
-		if (storage.containsKey(userId))
+		if (storage.containsValue(userId))
 			return true;
 		else
 			return false;
@@ -82,10 +87,10 @@ public class UserBook {
             Random random = new SecureRandom();
             String token = new BigInteger(130, random).toString(32);
             // create new Token for every request
-            if(!m_token.containsKey(user.getId()))
-                m_token.put(user.getId(), token);
+            if(!m_token.containsValue(userId))
+                m_token.put(token, userId);
             else
-                m_token.replace(user.getId(), token);
+                m_token.replace(token, userId);
 
             return token;
         }

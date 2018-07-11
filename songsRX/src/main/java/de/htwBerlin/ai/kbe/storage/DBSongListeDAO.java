@@ -96,7 +96,7 @@ public class DBSongListeDAO implements SongListeDAO {
         }
     }
     
-    
+
     @Override
     public void initSongListen() { 	
         	//TODO
@@ -104,7 +104,7 @@ public class DBSongListeDAO implements SongListeDAO {
     		// Leon /home/s0552107/Uni/Sose18/kbe/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
     		// Emil /Users/emilovic/Documents/htw/git/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
         	// /home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songs.json
-
+/**
 // 			
     		try {
 				List<SongListe> initSongListen = Parser.readJSONToSongListen("/home/s0549218/Dokumente/GIT/KBE/SoSe18KBERLIN/songsRX/src/main/resources/songListe.json");
@@ -121,7 +121,7 @@ public class DBSongListeDAO implements SongListeDAO {
     		catch(Exception e)
     		{
     			;
-    		}
+    		}**/
 		
     }
 
